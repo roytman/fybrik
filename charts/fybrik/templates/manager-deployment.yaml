@@ -114,6 +114,8 @@ spec:
               name: cert
               readOnly: true  
             {{- end }}     
+            - name: tmp
+              mountPath: /tmp
             - mountPath: /tmp/taxonomy
               name: fybrik-taxonomy
             - mountPath: /tmp/adminconfig
@@ -136,6 +138,8 @@ spec:
             defaultMode: 420
             secretName: webhook-server-cert
         {{- end }}
+        - name: tmp
+          emptyDir: {}
         - name: fybrik-taxonomy
           configMap:
             name: fybrik-taxonomy-config
