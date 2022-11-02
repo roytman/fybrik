@@ -18,6 +18,7 @@ env:
   # the oldest supported K8s version and its respective kind image
   OLD_K8S_VERSION: v1.22.9@sha256:6e57a6b0c493c7d7183a1151acff0bfa44bf37eb668826bf00da5637c55b6d5e 
   LATEST_BACKWARD_SUPPORTED_VERSION: 0.7.0
+  KEY_SUFFIX: c-${{ hashFiles('hack/make-rules/tools.mk') }}-${{ hashFiles('hack/tools/requirements.sh') }}-go-${{ hashFiles('**/go.sum') }}
 
 jobs:
   verify:
@@ -39,7 +40,7 @@ jobs:
           ~/go/pkg/mod
           ${{ github.workspace }}/hack/tools/bin
           ${{ github.workspace }}/hack/tools/lib
-        key: ${{ runner.os }}-c-${{ hashFiles('hack/make-rules/tools.mk') }}-${{ hashFiles('hack/tools/requirements.sh') }}-go-${{ hashFiles('**/go.sum') }}
+        key: ${{ runner.os }}-${{ KEY_SUFFIX }}
     - name: Install tools
       run: make install-tools
     - name: Verify
@@ -67,7 +68,7 @@ jobs:
           ~/go/pkg/mod
           ${{ github.workspace }}/hack/tools/bin
           ${{ github.workspace }}/hack/tools/lib
-        key: ${{ runner.os }}-c-${{ hashFiles('hack/make-rules/tools.mk') }}-${{ hashFiles('hack/tools/requirements.sh') }}-go-${{ hashFiles('**/go.sum') }}
+        key: ${{ runner.os }}-${{ KEY_SUFFIX }}
     - name: Install tools
       run: make install-tools
     - name: Test
@@ -96,7 +97,7 @@ jobs:
           ~/go/pkg/mod
           ${{ github.workspace }}/hack/tools/bin
           ${{ github.workspace }}/hack/tools/lib
-        key: ${{ runner.os }}-c-${{ hashFiles('hack/make-rules/tools.mk') }}-${{ hashFiles('hack/tools/requirements.sh') }}-go-${{ hashFiles('**/go.sum') }}
+        key: ${{ runner.os }}-${{ KEY_SUFFIX }}
     - name: Install tools
       run: make install-tools
     - name: Namescope integration tests
@@ -149,7 +150,7 @@ jobs:
           ~/go/pkg/mod
           ${{ github.workspace }}/hack/tools/bin
           ${{ github.workspace }}/hack/tools/lib
-        key: ${{ runner.os }}-c-${{ hashFiles('hack/make-rules/tools.mk') }}-${{ hashFiles('hack/tools/requirements.sh') }}-go-${{ hashFiles('**/go.sum') }}
+        key: ${{ runner.os }}-${{ KEY_SUFFIX }}
     - name: Install tools
       run: make install-tools
     - name: Read flow notebook tests old
@@ -182,7 +183,7 @@ jobs:
 #          ~/go/pkg/mod
 #          ${{ github.workspace }}/hack/tools/bin
 #          ${{ github.workspace }}/hack/tools/lib
-#        key: ${{ runner.os }}-c-${{ hashFiles('hack/make-rules/tools.mk') }}-${{ hashFiles('hack/tools/requirements.sh') }}-go-${{ hashFiles('**/go.sum') }}
+#        key: ${{ runner.os }}-${{ KEY_SUFFIX }}
 #    - name: Install tools
 #      run: make install-tools
 #    - name: Read flow notebook tests bc version
@@ -212,7 +213,7 @@ jobs:
           ~/go/pkg/mod
           ${{ github.workspace }}/hack/tools/bin
           ${{ github.workspace }}/hack/tools/lib
-        key: ${{ runner.os }}-c-${{ hashFiles('hack/make-rules/tools.mk') }}-${{ hashFiles('hack/tools/requirements.sh') }}-go-${{ hashFiles('**/go.sum') }}
+        key: ${{ runner.os }}-${{ KEY_SUFFIX }}
     - name: Install tools
       run: make install-tools
     - name: Write flow notebook tests
@@ -239,7 +240,7 @@ jobs:
           ~/go/pkg/mod
           ${{ github.workspace }}/hack/tools/bin
           ${{ github.workspace }}/hack/tools/lib
-        key: ${{ runner.os }}-c-${{ hashFiles('hack/make-rules/tools.mk') }}-${{ hashFiles('hack/tools/requirements.sh') }}-go-${{ hashFiles('**/go.sum') }}
+        key: ${{ runner.os }}-${{ KEY_SUFFIX }}
     - name: Install tools
       run: make install-tools
     - name: Read flow notebook tests with tls
@@ -266,7 +267,7 @@ jobs:
           ~/go/pkg/mod
           ${{ github.workspace }}/hack/tools/bin
           ${{ github.workspace }}/hack/tools/lib
-        key: ${{ runner.os }}-c-${{ hashFiles('hack/make-rules/tools.mk') }}-${{ hashFiles('hack/tools/requirements.sh') }}-go-${{ hashFiles('**/go.sum') }}
+        key: ${{ runner.os }}-${{ KEY_SUFFIX }}
     - name: Install tools
       run: make install-tools
     - name: Read flow notebook tests with tls using system CA certs
@@ -298,7 +299,7 @@ jobs:
           ~/go/pkg/mod
           ${{ github.workspace }}/hack/tools/bin
           ${{ github.workspace }}/hack/tools/lib
-        key: ${{ runner.os }}-c-${{ hashFiles('hack/make-rules/tools.mk') }}-${{ hashFiles('hack/tools/requirements.sh') }}-go-${{ hashFiles('**/go.sum') }}
+        key: ${{ runner.os }}-${{ KEY_SUFFIX }}
     - name: Install tools
       run: make install-tools
     - name: Integration tests
